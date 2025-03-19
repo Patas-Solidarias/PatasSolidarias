@@ -8,7 +8,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Context\" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.0-preview.2.25163.2" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Context\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Context\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Context\**" />
     </ItemGroup>
 
 </Project>

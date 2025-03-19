@@ -20,4 +20,8 @@
       <None Remove="Properties\launchSettings.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PatasSolidarias.Infra\PatasSolidarias.Infra.csproj" />
+    </ItemGroup>
+
 </Project>
