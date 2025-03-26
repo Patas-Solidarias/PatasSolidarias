@@ -16,3 +16,6 @@
 - [Angular]
 - [C#]
 - [PostgreSQL]
+
+### Protótipo
+- https://www.figma.com/design/bupHFIm8WW6VvWya14W1Iy/Untitled?node-id=33-174&t=DaXvLdAbuEbY2ICE-1
