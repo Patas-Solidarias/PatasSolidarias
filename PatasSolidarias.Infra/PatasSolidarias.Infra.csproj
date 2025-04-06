@@ -24,4 +24,8 @@
       <None Remove="Context\**" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PatasSolidarias.Domain\PatasSolidarias.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

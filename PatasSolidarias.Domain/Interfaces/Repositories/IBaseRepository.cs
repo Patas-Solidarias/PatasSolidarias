@@ -1,0 +1,10 @@
+﻿namespace PatasSolidarias.Domain.Interfaces.Repositories;
+
+public interface IBaseRepository<TEntity> where TEntity : class
+{
+    Task<TEntity> AddAsync(TEntity entity);
+    Task<TEntity> UpdateAsync(TEntity entity);
+    Task<TEntity> RemoveAsync(TEntity entity);
+    Task<TEntity> GetByIdAsync(int id);
+    IQueryable<TEntity> GetAll();
+}

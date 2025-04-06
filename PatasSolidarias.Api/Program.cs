@@ -1,17 +1,28 @@
 using PatasSolidaras.Infra.Extensions;
+using PatasSolidarias.Application.Extensions;
+using PatasSolidarias.Domain.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 {
+    // infra
+    builder.Services.RegisterInfrastructure(builder.Configuration);
+    builder.Services.AddRepositories();
+    
+    // domain
+    builder.Services.AddDomainServices();
+    
+    // application
+    builder.Services.AddApplicationServices();
+    
+    // controllers
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
-    builder.Services.RegisterInfrastructure(builder.Configuration);
+    builder.Services.AddSwaggerGen();
 }
 
 var app = builder.Build();
 {
-    if (app.Environment.IsDevelopment())
-        app.UseSwagger();
-
+    app.UseSwagger();
     app.UseHttpsRedirection();
     app.MapControllers();
     app.Run();

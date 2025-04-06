@@ -13,6 +13,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - PatasSolidarias.Application", "2 - PatasSolidarias.Application", "{0ABDD647-0EED-49BD-B03E-BF121250B848}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - PatasSolidarias.Domain", "3 - PatasSolidarias.Domain", "{4185F1ED-455D-4672-9EE1-C7B7BB9B7CDC}"
+	ProjectSection(SolutionItems) = preProject
+		Extensions\ApplicationExtensions.cs = Extensions\ApplicationExtensions.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - PatasSolidarias.Infra", "4 - PatasSolidarias.Infra", "{01E2C903-7141-47DA-A6CB-C832BD74D09F}"
 EndProject
