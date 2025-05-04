@@ -6,16 +6,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatasSolidarias.Infra", "Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatasSolidarias.Domain", "PatasSolidarias.Domain\PatasSolidarias.Domain.csproj", "{E8522297-1A89-4BB9-9B52-35DCFA5BA2EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatasSolidarias.Application", "PatasSolidarias.Application\PatasSolidarias.Application.csproj", "{208138A8-2356-4CEC-BEBA-EDF3E0F60542}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - PatasSolidarias.Presentation", "1 - PatasSolidarias.Presentation", "{98CB3EC3-8F2E-4509-B6B7-2BBAB9F2DA55}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - PatasSolidarias.Application", "2 - PatasSolidarias.Application", "{0ABDD647-0EED-49BD-B03E-BF121250B848}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - PatasSolidarias.Domain", "3 - PatasSolidarias.Domain", "{4185F1ED-455D-4672-9EE1-C7B7BB9B7CDC}"
-	ProjectSection(SolutionItems) = preProject
-		Extensions\ApplicationExtensions.cs = Extensions\ApplicationExtensions.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - PatasSolidarias.Infra", "4 - PatasSolidarias.Infra", "{01E2C903-7141-47DA-A6CB-C832BD74D09F}"
 EndProject
@@ -39,10 +32,6 @@ Global
 		{E8522297-1A89-4BB9-9B52-35DCFA5BA2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8522297-1A89-4BB9-9B52-35DCFA5BA2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8522297-1A89-4BB9-9B52-35DCFA5BA2EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{208138A8-2356-4CEC-BEBA-EDF3E0F60542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{208138A8-2356-4CEC-BEBA-EDF3E0F60542}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{208138A8-2356-4CEC-BEBA-EDF3E0F60542}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{208138A8-2356-4CEC-BEBA-EDF3E0F60542}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4601238B-AAAB-458B-B8C3-5C6C99FA103F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4601238B-AAAB-458B-B8C3-5C6C99FA103F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4601238B-AAAB-458B-B8C3-5C6C99FA103F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,7 +39,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7C1EA842-BBE0-4DB8-AFC7-C65517BF0D9F} = {98CB3EC3-8F2E-4509-B6B7-2BBAB9F2DA55}
-		{208138A8-2356-4CEC-BEBA-EDF3E0F60542} = {0ABDD647-0EED-49BD-B03E-BF121250B848}
 		{E8522297-1A89-4BB9-9B52-35DCFA5BA2EB} = {4185F1ED-455D-4672-9EE1-C7B7BB9B7CDC}
 		{4EC440D6-9CB5-4621-BCC6-4AEF7219F9AE} = {01E2C903-7141-47DA-A6CB-C832BD74D09F}
 	EndGlobalSection

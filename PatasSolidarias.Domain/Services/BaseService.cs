@@ -1,4 +1,5 @@
-﻿using PatasSolidarias.Domain.Interfaces.Repositories;
+﻿using PatasSolidarias.Domain.Erros;
+using PatasSolidarias.Domain.Interfaces.Repositories;
 using PatasSolidarias.Domain.Interfaces.Services;
 
 namespace PatasSolidarias.Domain.Services;
@@ -14,26 +15,26 @@ public class BaseService<TEntity>: IBaseService<TEntity> where TEntity : class
 
     public async Task<TEntity> AddAsync(TEntity entity)
     {
-        var xReturn = await _repository.AddAsync(entity);
-        return xReturn;
+        var retorno = await _repository.AddAsync(entity);
+        return retorno;
     }
 
-    public Task<TEntity> UpdateAsync(TEntity entity)
+    public async Task<TEntity> UpdateAsync(TEntity entity)
     {
-        var xReturn = _repository.UpdateAsync(entity);
-        return xReturn;
+        var retorno = await _repository.UpdateAsync(entity);
+        return retorno;
     }
 
-    public Task<TEntity> RemoveAsync(TEntity entity)
+    public async Task<TEntity> RemoveAsync(int entityId)
     {
-        var xReturn = _repository.RemoveAsync(entity);
-        return xReturn;
+        var retorno = await _repository.RemoveAsync(entityId);
+        return retorno;
     }
 
-    public Task<TEntity> GetByIdAsync(int id)
+    public async Task<TEntity?> GetByIdAsync(int id)
     {
-        var xReturn = _repository.GetByIdAsync(id);
-        return xReturn;
+        var retorno = await _repository.GetByIdAsync(id);
+        return retorno;
     }
 
     public IQueryable<TEntity> GetAllAsync()

@@ -1,5 +1,4 @@
 using PatasSolidaras.Infra.Extensions;
-using PatasSolidarias.Application.Extensions;
 using PatasSolidarias.Domain.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,9 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
     // domain
     builder.Services.AddDomainServices();
     
-    // application
-    builder.Services.AddApplicationServices();
-    
     // controllers
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
@@ -23,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 {
     app.UseSwagger();
+    app.UseSwaggerUI();
     app.UseHttpsRedirection();
     app.MapControllers();
     app.Run();
