@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
+import { SidebarComponent } from './pages/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToastModule],
+  standalone: true,
+  imports: [RouterOutlet, ToastModule, SidebarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'] // Corrigido aqui
 })
 export class AppComponent {
   title = 'Patas solidárias';
