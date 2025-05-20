@@ -11,6 +11,7 @@ import { firstValueFrom } from 'rxjs';
 import { usuarioTipos } from '../../../api/e-usuario-tipo';
 import { Usuario, usuarioColumns, usuarioForm } from '../../../api/usuario';
 import { UsuarioService } from './pessoa-crud.service';
+import { Field } from '../../../utils/field';
 
 @Component({
   imports: [
@@ -27,19 +28,68 @@ import { UsuarioService } from './pessoa-crud.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PessoaCrudComponent {
+  fields: Field<unknown>[] = [];
   usuarioForm = usuarioForm;
   columns = usuarioColumns;
   usuarioTipos = usuarioTipos;
-
   usuarios: Usuario[] = [];
   usuarioDialog: boolean = false;
   submitted: boolean = false;
   usuarioDialogTitle: string | undefined;
+  carregando: unknown;
 
   constructor(private usuarioService: UsuarioService) { }
 
   async ngOnInit(): Promise<void> {
+    this.configuraCampos();
     await this.loadUsuarios();
+  }
+
+  configuraCampos() {
+    this.fields = [
+      new Field<string>({
+        key: 'nome',
+        label: 'Nome',
+        required: true,
+        order: 1,
+        controlType: 'input',
+        type: 'text',
+      }),
+      new Field<string>({
+        key: 'email',
+        label: 'Email',
+        required: true,
+        order: 2,
+        controlType: 'input',
+        type: 'email',
+      }),
+      new Field<Usuario>({
+        key: 'senha',
+        label: 'Senha',
+        required: true,
+        order: 3,
+        controlType: 'input',
+        type: 'password',
+      }),
+      new Field<number>({
+        key: 'usuarioTipoId',
+        label: 'Tipo de Usuário',
+        required: true,
+        order: 4,
+        controlType: 'dropdown',
+        options: this.usuarioTipos.map((tipo) => ({
+          key: tipo.label.toString(),
+          value: tipo.value,
+        })),
+      }),
+      new Field<string>({
+        key: 'descricao',
+        label: 'Descrição',
+        required: false,
+        order: 5,
+        controlType: 'input',
+      }),
+    ];
   }
 
   async loadUsuarios() {
@@ -48,6 +98,8 @@ export class PessoaCrudComponent {
   }
 
   openNew() {
+    this.usuarioDialogTitle = 'Novo Usuário';
+    this.usuarioForm.reset();
     this.submitted = false;
     this.usuarioDialog = true;
   }

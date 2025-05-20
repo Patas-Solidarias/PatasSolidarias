@@ -18,7 +18,9 @@ public class UsuarioController: ControllerBase
     [HttpGet]
     public Task<IActionResult> GetAll()
     {
-        var retorno = _usuarioService.GetAllAsync();
+        var retorno = _usuarioService.GetAll();
+
+        var xTeste = retorno.ToList();
         return Task.FromResult<IActionResult>(Ok(retorno));
     }
     

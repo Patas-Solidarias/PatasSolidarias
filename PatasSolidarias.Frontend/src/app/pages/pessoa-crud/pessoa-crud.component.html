@@ -1,27 +1,50 @@
 <div class="flex justify-end mb-4">
-  <p-button label="Novo Usuário" icon="pi pi-plus" (click)="openNew()" styleClass="p-button-success"></p-button>
+  <p-button
+    label="Novo Usuário"
+    icon="pi pi-plus"
+    (click)="openNew()"
+    styleClass="p-button-success"
+  ></p-button>
 </div>
 
-<p-table [value]="usuarios" dataKey="id" class="mt-3 shadow-lg rounded-lg">
+<p-table
+  [value]="usuarios"
+  dataKey="id"
+  class="mt-3 shadow-lg rounded-lg"
+  [loading]="carregando"
+>
   <ng-template pTemplate="header">
     <tr class="bg-gray-100">
-      <th *ngFor="let col of columns" class="text-left p-3 font-semibold text-gray-700 uppercase text-sm">
+      <th
+        *ngFor="let col of columns"
+        class="text-left p-3 font-semibold uppercase text-sm"
+      >
         {{ col.header }}
       </th>
-      <th class="text-left p-3 font-semibold text-gray-700 uppercase text-sm">Ações</th>
+      <th class="text-left p-3 font-semibold uppercase text-sm">Ações</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-usuario>
-    <tr class="hover:bg-gray-50">
-      <td *ngFor="let item of columns" class="p-3 text-gray-800">
+    <tr>
+      <td *ngFor="let item of columns" class="p-3">
         <ng-container [ngSwitch]="item.field">
-          <span *ngSwitchCase="'criadoDataHora'">{{ usuario[item.field] | date:'short' }}</span>
+          <span *ngSwitchCase="'criadoDataHora'">{{
+            usuario[item.field] | date : "short"
+          }}</span>
           <span *ngSwitchDefault>{{ usuario[item.field] }}</span>
         </ng-container>
       </td>
       <td class="p-3 flex gap-2">
-        <p-button icon="pi pi-pencil" (click)="editUsuario(usuario)" styleClass="p-button-rounded p-button-info p-button-sm"></p-button>
-        <p-button icon="pi pi-trash" (click)="deleteUsuario(usuario)" styleClass="p-button-rounded p-button-danger p-button-sm"></p-button>
+        <p-button
+          icon="pi pi-pencil"
+          (click)="editUsuario(usuario)"
+          styleClass="p-button-rounded p-button-info p-button-sm"
+        ></p-button>
+        <p-button
+          icon="pi pi-trash"
+          (click)="deleteUsuario(usuario)"
+          styleClass="p-button-rounded p-button-danger p-button-sm"
+        ></p-button>
       </td>
     </tr>
   </ng-template>
@@ -36,60 +59,36 @@
   class="rounded-lg shadow-lg"
 >
   <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" class="space-y-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4">
+      <div class="flex flex-col md:col-span-2">
+      @for (item of fields; track $index) {
+      <label [attr.for]="item.key" class="mb-1 font-medium"
+        >{{ item.label }}
+      </label>
       <div class="flex flex-col">
-        <label for="nome" class="mb-1 font-medium text-gray-700">Nome</label>
+        @switch (item.controlType) { @case ('input') {
         <input
-          id="nome"
-          type="text"
-          formControlName="nome"
           pInputText
-          class="p-inputtext p-component rounded-md border-gray-300 focus:ring-2 focus:ring-blue-500"
+          [formControlName]="item.key"
+          [id]="item.key"
+          [type]="item.type"
+          class="p-inputtext p-component rounded-md focus:ring-2 focus:ring-blue-500"
         />
+        } @case ('dropdown') {
+          <p-dropdown
+            [formControlName]="item.key"
+            [id]="item.key"
+            [options]="item.options"
+            optionLabel="key"
+            optionValue="value"
+            class="w-full"
+          ></p-dropdown>
+        } }
       </div>
-      <div class="flex flex-col">
-        <label for="email" class="mb-1 font-medium text-gray-700">Email</label>
-        <input
-          id="email"
-          type="text"
-          formControlName="email"
-          pInputText
-          class="p-inputtext p-component rounded-md border-gray-300 focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div class="flex flex-col md:col-span-2">
-        <label for="senha" class="mb-1 font-medium text-gray-700">Senha</label>
-        <input
-          id="senha"
-          type="password"
-          formControlName="senha"
-          pInputText
-          class="p-inputtext p-component rounded-md border-gray-300 focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div class="flex flex-col md:col-span-2">
-        <label for="descricao" class="mb-1 font-medium text-gray-700">Descricao</label>
-        <input
-          id="descricao"
-          type="text"
-          formControlName="descricao"
-          pInputText
-          class="p-inputtext p-component rounded-md border-gray-300 focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div class="flex flex-col md:col-span-2">
-        <label for="usuarioTipoId" class="mb-1 font-medium text-gray-700">Tipo de usuário</label>
-        <p-dropdown
-          id="usuarioTipoId"
-          formControlName="usuarioTipoId"
-          [options]="usuarioTipos"
-          optionLabel="label"
-          optionValue="value"
-          placeholder="Selecione o tipo"
-          class="p-component rounded-md border-gray-300 focus:ring-2 focus:ring-blue-500"
-        ></p-dropdown>
+      }
       </div>
     </div>
+
     <p-footer class="flex justify-end gap-2 mt-4">
       <button
         type="submit"

@@ -19,7 +19,6 @@ export const usuarioForm: FormGroup = new FormGroup({
   descricao: new FormControl('')
 });
 
-
 export const usuarioColumns = [
   { field: 'nome', header: 'Nome' },
   { field: 'email', header: 'Email' },

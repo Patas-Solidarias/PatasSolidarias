@@ -6,5 +6,5 @@ public interface IBaseService<TEntity>
     Task<TEntity> UpdateAsync(TEntity entity);
     Task<TEntity> RemoveAsync(int entityId);
     Task<TEntity?> GetByIdAsync(int id);
-    IQueryable<TEntity> GetAllAsync();    
+    IQueryable<TEntity> GetAll();
 }

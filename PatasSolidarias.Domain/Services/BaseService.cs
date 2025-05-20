@@ -37,7 +37,7 @@ public class BaseService<TEntity>: IBaseService<TEntity> where TEntity : class
         return retorno;
     }
 
-    public IQueryable<TEntity> GetAllAsync()
+    public IQueryable<TEntity> GetAll()
     {
         var xReturn = _repository.GetAll();
         return xReturn;

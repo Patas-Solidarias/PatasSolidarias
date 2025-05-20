@@ -13,7 +13,13 @@ export const appConfig: ApplicationConfig = {
   providers: [
     providePrimeNG({
       theme: {
-        preset: material
+        preset: material,
+        options: {
+          cssLayer: {
+            name: 'primeng',
+            order: 'theme, base, primeng'
+          }
+        }
       },
     }),
     provideZoneChangeDetection({ eventCoalescing: true }),
