@@ -1,0 +1,97 @@
+.search-box {
+  background-color: #333335 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  min-height: 100%;
+  height: 100%;
+  margin-left: 116px;
+  width: 400px;
+  position: absolute;
+  top: 0;
+}
+
+.search-box .close-btn {
+  margin-left: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  // background-color: #C2DED3;
+  background-color: rgba(14, 105, 88, 0.4392156863);
+  width: 40px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px
+}
+
+
+.icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+  width: 40px;
+  padding: 5px;
+}
+
+.icon.active {
+  background-color: rgba(14, 105, 88, 0.4392156863);
+  border-radius: 6px;
+  padding: 5px;
+  width: 40px;
+}
+
+
+div.input-search {
+  display: inline-flex;
+  width: 100%;
+  border: 1px solid #FFFF;
+  border-radius: 8px;
+  align-items: center
+}
+
+div.search-box div.icon{
+  height: 100%;
+  padding: 0px 10px;
+  border-width: 0px 1px 0px 0px;
+  border-color: #FFFFFF;
+  justify-items: center;
+  align-content: center;
+  background-color: rgba(14, 105, 88, 0.4392156863)
+  
+}
+div.search-box input{
+  color: #FFFF;
+}
+
+div.search-box input {
+  flex: 1;
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 40px;
+  width: 100%;
+  border: 0px
+}
+
+div.close-search {
+  width: 100%;
+  margin: 20px 0px;
+  display: flex;
+  align-content: center;
+  justify-content: end
+}
+
+div.search-toggle i {
+  font-size: 25px
+}
+
+div.search-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center
+}

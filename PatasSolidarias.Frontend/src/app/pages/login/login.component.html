@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="left">
+    <img src="assets/logo.png" alt="Logo Patas Solidárias" class="logo" />
+    <div id="title">
+      <h1 class="title">PATAS</h1>
+      <h2 class="subtitle">solidarias</h2>
+    </div>
+  </div>
+
+  <div class="right">
+    <app-form-login [hidden]="tela !== 'login'" (navegar)="trocarTela($event)">
+    </app-form-login>
+
+    <app-form-cadastro-ong *ngIf="tela === 'cadastro-ong'" (voltar)="trocarTela('login')">
+    </app-form-cadastro-ong>
+
+    <app-form-cadastro-usuario *ngIf="tela === 'cadastro-pessoa'" (voltar)="trocarTela('login')">
+    </app-form-cadastro-usuario>
+
+    <app-form-cadastro-empresa *ngIf="tela === 'cadastro-empresa'" (voltar)="trocarTela('login')">
+    </app-form-cadastro-empresa>
+  </div>

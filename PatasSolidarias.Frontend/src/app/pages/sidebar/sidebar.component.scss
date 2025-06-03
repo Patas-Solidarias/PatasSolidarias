@@ -50,12 +50,15 @@
   border: none;
   cursor: pointer;
   font-size: 25px;
+  width: 40px;
+  padding: 5px;
 }
 
 .icon.active {
   background-color: #1edba2;
   border-radius: 6px;
   padding: 5px;
+  width: 40px;
 }
 
 .user {
@@ -85,6 +88,6 @@
 }
 
 .menu-icons .icon.active {
-  background-color: #0e695870; 
+  background-color: #0e695870;
   color: #fff;
 }

@@ -1,0 +1,78 @@
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  min-width: 100%;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('../../../assets/fundo.png');
+  background-repeat: repeat;
+  background-size: cover;
+  z-index: 0;
+}
+
+.container > * {
+  position: relative;
+  z-index: 1; // garante que o conteúdo fique acima da imagem
+}
+
+.left,
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left {
+  background-color: transparent;
+  padding: 2rem;
+  background-color: #ffffff78 !important;
+}
+
+.right {
+  background-color: rgba(0, 0, 0, 0.541);
+  padding: 2rem;
+}
+
+.logo {
+  width: 350px;
+  margin-bottom: 20px;
+}
+
+.title {
+  color: #106a5a;
+  font-size: 90px;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+div#title{
+  line-height: 60px
+}
+
+.subtitle {
+  color: #106a5a;
+  font-size: 64px;
+  margin: 0;
+  font-weight: 400;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+

@@ -1,0 +1,43 @@
+<div class="login-box">
+  <!-- DOADOR -->
+  <h2 class="login-title">Cadastro Empresa</h2>
+
+  <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+    <ng-container *ngFor="let item of fields">
+      <label [for]="item.key">{{ item.label }}</label>
+
+      <input *ngIf="item.controlType === 'input'" [type]="item.type || 'text'" [id]="item.key"
+        [formControlName]="item.key" [placeholder]="item.label" class="input" />
+      <div class="error" *ngIf="usuarioForm.get(item.key)?.invalid && submitted">
+        <ng-container [ngSwitch]="item.key">
+          <div *ngSwitchCase="'nome'">Nome deve conter apenas letras e ter ao menos 3 caracteres.</div>
+          <div *ngSwitchCase="'email'">Email inválido.</div>
+          <div *ngSwitchCase="'senha'">Senha deve ter pelo menos 6 caracteres.</div>
+        </ng-container>
+      </div>
+
+      <select *ngIf="item.controlType === 'dropdown'" [id]="item.key" [formControlName]="item.key" class="input">
+        <option *ngFor="let opt of item.options" [value]="opt.value">
+          {{ opt.key }}
+        </option>
+      </select>
+    </ng-container>
+
+    <!-- Campo manual de Confirmar Senha -->
+    <label for="confirmarSenha">Confirmar Senha</label>
+    <input type="password" id="confirmarSenha" formControlName="confirmarSenha" placeholder="Confirmar Senha"
+      class="input" />
+    <div class="error" *ngIf="usuarioForm.hasError('senhasDiferentes') && submitted">
+      As senhas não coincidem.
+    </div>
+    <div class="error" *ngIf="usuarioForm.get('confirmarSenha')?.invalid && submitted">
+      Campo obrigatório.
+    </div>
+
+    <div class="error" *ngIf="erroCadastro">
+      Não foi possível fazer o cadastro. Verifique os dados informados.
+    </div>
+    <button type="submit" class="btn">Cadastrar</button>
+    <button type="button" class="btn" (click)="voltarParaLogin()">Voltar</button>
+  </form>
+</div>

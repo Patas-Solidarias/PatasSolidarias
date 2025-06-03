@@ -1,31 +1,41 @@
 import { Routes } from '@angular/router';
 
+import { LayoutCompletoComponent } from './layouts/layout-completo/layout-completo.component';
+import { LayoutMenuComponent } from './layouts/layout-menu/layout-menu.component';
+
 import { PessoaCrudComponent } from './pages/pessoa-crud/pessoa-crud.component';
 import { HomeComponent } from './pages/home/home.component';
 import { VideoComponent } from './pages/video/video.component';
-import { SearchComponent } from './pages/search/search.component';
-import { AddComponent } from './pages/add/add.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { LoginComponent } from './pages/login/login.component'; // login aqui
 
 export const Rotas = {
-  PessoaCrudComponent: 'pessoa-crud-component',
-  HomeComponent: 'home-component',
-  VideoComponent: 'video-component',
-  SearchComponent: 'search-component',
-  AddComponent: 'add-component',
-  PessoaCrud: 'pessoa-crud',
+  PessoaCrudComponent: 'pessoa-crud',
   Home: 'home',
   Video: 'video',
-  Search: 'search',
-  Add: 'add',
-}
+  Usuario: 'usuario',
+  Login: 'login'
+};
 
 export const routes: Routes = [
-  { path: Rotas.Home, component: HomeComponent },
-  { path: Rotas.Video, component: VideoComponent },
-  { path: Rotas.Search, component: SearchComponent },
-  { path: Rotas.Add, component: AddComponent },
-  { path: Rotas.PessoaCrud, component: PessoaCrudComponent },
-  { path: Rotas.PessoaCrudComponent, component: PessoaCrudComponent },
-  { path: '', redirectTo: Rotas.Home, pathMatch: 'full' },
-  { path: '**', redirectTo: Rotas.Home },
+  {
+    path: '',
+    component: LayoutMenuComponent,
+    children: [
+      { path: Rotas.Home, component: HomeComponent },
+      { path: Rotas.Video, component: VideoComponent },
+      { path: Rotas.Usuario, component: UsuarioComponent },
+      { path: Rotas.PessoaCrudComponent, component: PessoaCrudComponent },
+      { path: '', redirectTo: Rotas.Home, pathMatch: 'full' },
+    ]
+  },
+  {
+    path: '',
+    component: LayoutCompletoComponent,
+    children: [
+      { path: Rotas.Login, component: LoginComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+    ]
+  },
+  { path: '**', redirectTo: Rotas.Home }
 ];

@@ -5,13 +5,33 @@
     <p>SOLIDARIAS</p>
   </div>
   <nav class="menu-icons">
-    <button class="icon" [routerLink]="['/home']" routerLinkActive="active"><i class="fa fa-home"></i></button>
-    <button class="icon" [routerLink]="['/video']" routerLinkActive="active"><i class="fa fa-video"></i></button>
-    <button class="icon" [routerLink]="['/search']" routerLinkActive="active"><i class="fa fa-search"></i></button>
-    <button class="icon" [routerLink]="['/add']" routerLinkActive="active"><i class="fa fa-plus-square"></i></button>
+    <!-- HOME -->
+    <button class="icon" [ngClass]="{ 'active': ativo === 'home' }" (click)="setAtivo('home')" [routerLink]="['/home']">
+      <i class="fa fa-home"></i>
+    </button>
+
+    <!-- VIDEO -->
+    <button class="icon" [ngClass]="{ 'active': ativo === 'video' }" (click)="setAtivo('video')"
+      [routerLink]="['/video']">
+      <i class="fa fa-video"></i>
+    </button>
+
+    <!-- BUSCA (componente) -->
+    <app-sidebar-search [ativo]="ativo === 'busca'" (ativarBusca)="setAtivo('busca')">
+    </app-sidebar-search>
+
+    <!-- ADD -->
+    <button class="icon" [ngClass]="{ 'active': ativo === 'add' }" (click)="setAtivo('add')">
+      <i class="fa fa-plus-square"></i>
+    </button>
+<!-- 
+    <button class="icon" routerLinkActive="active"><i class="fa fa-plus-square"></i></button> -->
   </nav>
   <div class="user">
-    <div class="avatar" [routerLink]="['/pessoa-crud']"><i class="fa fa-user"></i></div>
-    <span>Nome do usuario</span>
+    <div class="avatar" [routerLink]="['/usuario']"><i class="fa fa-user"></i></div>
+    <span>Fazer login</span>
   </div>
 </div>
+
+
+<!-- components de adicionar postagem e busca -->
