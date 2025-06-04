@@ -1,15 +1,16 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Usuario } from '../../../api/usuario';
 import { Field } from '../../../utils/field';
-import { TableModule } from 'primeng/table';
+import { UsuarioService } from '../../pages/pessoa-crud/pessoa-crud.service';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
 import { firstValueFrom } from 'rxjs';
-import { Usuario } from '../../../api/usuario';
-import { UsuarioService } from '../../pages/pessoa-crud/pessoa-crud.service';
+import { Rotas } from '../../app.routes';
 
 @Component({
   selector: 'app-form-cadastro-empresa',
@@ -28,6 +29,7 @@ import { UsuarioService } from '../../pages/pessoa-crud/pessoa-crud.service';
   styleUrl: './form-cadastro-empresa.component.scss'
 })
 export class FormCadastroEmpresaComponent implements OnInit {
+  rotas = Rotas;
   @Output() voltar = new EventEmitter<void>();
 
   usuarioForm!: FormGroup;
@@ -116,7 +118,6 @@ export class FormCadastroEmpresaComponent implements OnInit {
     const confirmarSenha = formGroup.get('confirmarSenha')?.value;
     return senha === confirmarSenha ? null : { senhasDiferentes: true };
   }
-
 
   // Adicionar id do tipo empresa
   async onSubmit() {

@@ -1,26 +1,50 @@
 import { HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { catchError, throwError } from 'rxjs';
 
+import { Rotas } from '../app.routes';
+import { AuthService } from '../services/auth.service';
+
 export const httpErrorInterceptor: HttpInterceptorFn = (request: HttpRequest<any>, next: HttpHandlerFn) => {
   const messageService = inject(MessageService);
+  const authService: AuthService = inject(AuthService);
+  const router = inject(Router);
 
-  return next(request).pipe(
+  if (authService.isAuthenticated()) {
+    const token = authService.getToken();
+    if (token) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
+  }
+
+  const newLocal = next(request).pipe(
     catchError((error: HttpErrorResponse) => {
-      let msg = 'Erro desconhecido';
+      let message = 'Erro desconhecido';
+
+      if (error.status === 401) {
+        message = 'Sessão expirada. Por favor, faça login novamente.';
+        authService.logout();
+        router.navigate([Rotas.Login]);
+      }
       if (error.error instanceof ErrorEvent) {
-        msg = `Erro: ${error.error.message}`;
+        message = `Erro: ${error.error.message}`;
       } else if (error.error?.message) {
-        msg = error.error.message;
+        message = error.error.message;
       } else if (typeof error.error === 'string') {
-        msg = error.error;
+        message = error.error;
       } else if (error.message) {
-        msg = error.message;
+        message = error.message;
       }
 
-      messageService.add({ severity: 'error', summary: 'Erro', detail: msg });
+      messageService.add({ severity: 'error', summary: 'Erro', detail: message });
       return throwError(() => error);
     })
   );
+  return newLocal;
 };

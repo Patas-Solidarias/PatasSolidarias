@@ -1,8 +1,9 @@
 :host {
-    display: flex;
-  }
-  
-  .main-content {
-    flex-grow: 0;
-    padding: 20px;
-  }
+  display: flex;
+}
+
+.main-content {
+  height: 100vh;
+  flex-grow: 0;
+  padding: 20px;
+}

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.JsonWebTokens;
 using PatasSolidarias.Domain.Entities;
 using PatasSolidarias.Domain.Interfaces.Services;
 
@@ -20,6 +22,8 @@ public class UsuarioController: ControllerBase
     {
         var retorno = _usuarioService.GetAll();
 
+        var email = User.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
+
         var xTeste = retorno.ToList();
         return Task.FromResult<IActionResult>(Ok(retorno));
     }
@@ -32,6 +36,7 @@ public class UsuarioController: ControllerBase
     }
     
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> Add([FromBody] Usuario usuario)
     {
         var retorno = await _usuarioService.AddAsync(usuario);
