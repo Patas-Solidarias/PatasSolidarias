@@ -12,14 +12,15 @@ import { SidebarSearchComponent } from '../../components/sidebar-search/sidebar-
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  ativo: string = 'home'; // padrão
+  /** guarda o item ativo. Use qualquer rótulo curto */
+  ativo = 'home';
   sidebarAberta = false;
 
   setAtivo(nome: string) {
     this.ativo = nome;
   }
 
-  /** Fecha a barra depois que o usuário navega (opcional, só para mobile) */
+  /** Fecha o sidebar no mobile */
   closeSidebarOnNavigate() {
     if (window.matchMedia('(max-width: 767px)').matches) {
       this.sidebarAberta = false;

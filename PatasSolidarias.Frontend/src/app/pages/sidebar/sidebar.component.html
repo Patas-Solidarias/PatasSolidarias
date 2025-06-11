@@ -1,7 +1,5 @@
 <!-- Mini menu fixo no topo (apenas mobile) -->
-<div
-  class="md:hidden fixed top-0 left-0 z-50 flex h-14 w-full items-center justify-between bg-white px-4 shadow"
->
+<div class="md:hidden fixed top-0 left-0 z-50 flex h-14 w-full items-center justify-between bg-white px-4 shadow">
   <button (click)="sidebarAberta = !sidebarAberta">
     <i class="fa fa-bars text-2xl text-[#0e6958]"></i>
   </button>
@@ -12,13 +10,9 @@
 </div>
 
 <!-- Sidebar -->
-<aside
-  class="fixed top-0 left-0 z-40 flex h-full w-[200px] flex-col items-center
+<aside class="fixed top-0 left-0 z-40 flex h-full w-[200px] flex-col items-center
          px-6 py-5 shadow-[10px_0_10px_rgba(0,0,0,0.5)] transition-transform duration-300
-         md:static md:translate-x-0"
-  [class.-translate-x-full]="!sidebarAberta"
-  [class.translate-x-0]="sidebarAberta"
->
+         md:static md:translate-x-0" [class.-translate-x-full]="!sidebarAberta" [class.translate-x-0]="sidebarAberta">
   <!-- Logo -->
   <a routerLink="/home" (click)="closeSidebarOnNavigate()">
     <img src="assets/logo.png" alt="Logo" class="mb-2.5 w-[150px]" />
@@ -32,51 +26,33 @@
 
   <!-- Menu -->
   <nav class="mb-auto flex flex-col gap-[50px]">
-    <!-- Home -->
-    <a
-      routerLink="/home"
-      routerLinkActive="menu-ativo"
-      [routerLinkActiveOptions]="{ exact: true }"
-      (click)="closeSidebarOnNavigate()"
-      class="icon"
-    >
+    <a routerLink="/home" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="menu-ativo"
+      [ngClass]="{ 'menu-ativo': ativo === 'home' }" (click)="setAtivo('home'); closeSidebarOnNavigate()" class="icon">
       <i class="fa fa-home text-[25px]"></i>
     </a>
 
-    <!-- Vídeo -->
-    <a
-      routerLink="/video"
-      routerLinkActive="menu-ativo"
-      (click)="closeSidebarOnNavigate()"
-      class="icon"
-    >
+<!-- Video -->
+    <a routerLink="/video" routerLinkActive="menu-ativo" [ngClass]="{ 'menu-ativo': ativo === 'video' }"
+      (click)="setAtivo('video'); closeSidebarOnNavigate()" class="icon">
       <i class="fa fa-video text-[25px]"></i>
     </a>
 
-    <!-- Busca (componente filho) -->
-    <app-sidebar-search
-      routerLinkActive="menu-ativo"
-      (ativarBusca)="closeSidebarOnNavigate()"
-    ></app-sidebar-search>
+    <!-- Busca -->
+    <app-sidebar-search [ativo]="ativo === 'search'" 
+      (ativarBusca)="setAtivo('search')" 
+      (fecharBusca)="setAtivo('')" 
+      ></app-sidebar-search>
 
-    <!-- Adicionar -->
-    <button
-      class="icon"
-      routerLink="/add"
-      routerLinkActive="menu-ativo"
-      (click)="closeSidebarOnNavigate()"
-    >
+      <!-- adicionar -->
+    <button routerLinkActive="menu-ativo" [ngClass]="{ 'menu-ativo': ativo === 'add' }"
+      (click)="setAtivo('add'); closeSidebarOnNavigate()" class="icon">
       <i class="fa fa-plus-square text-[25px]"></i>
     </button>
   </nav>
 
-  <!-- Usuário -->
   <div class="mb-5 flex flex-col items-center">
-    <a
-      routerLink="/usuario"
-      (click)="closeSidebarOnNavigate()"
-      class="mb-1 flex h-[50px] w-[50px] items-center justify-center rounded-full border-2 border-[#d6eee7] font-mono text-[#0e6958]"
-    >
+    <a routerLink="/usuario" (click)="closeSidebarOnNavigate()"
+      class="mb-1 flex h-[50px] w-[50px] items-center justify-center rounded-full border-2 border-[#d6eee7] font-mono text-[#0e6958]">
       <i class="fa fa-user"></i>
     </a>
     <span class="w-[90px] text-center font-mono text-[2ch]">Fazer login</span>

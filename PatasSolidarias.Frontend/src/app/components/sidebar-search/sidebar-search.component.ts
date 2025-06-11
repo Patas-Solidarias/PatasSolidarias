@@ -8,9 +8,9 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from
   styleUrl: './sidebar-search.component.scss'
 })
 export class SidebarSearchComponent {
- @Input() ativo: boolean = false;
+  @Input() ativo = false;                   // <-- recebe do pai
   @Output() ativarBusca = new EventEmitter<void>();
-  @Output() fecharBusca = new EventEmitter<void>(); // <-- novo output
+  @Output() fecharBusca = new EventEmitter<void>();
 
   mostrarBusca = false;
 
@@ -18,20 +18,15 @@ export class SidebarSearchComponent {
 
   toggleBusca() {
     this.mostrarBusca = !this.mostrarBusca;
-    if (this.mostrarBusca) {
-      this.ativarBusca.emit();
-    } else {
-      this.fecharBusca.emit();
-    }
+    this.mostrarBusca ? this.ativarBusca.emit()
+                      : this.fecharBusca.emit();
   }
 
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
-    if (!this.eRef.nativeElement.contains(event.target)) {
-      if (this.mostrarBusca) {
-        this.mostrarBusca = false;
-        this.fecharBusca.emit(); // avisa o componente pai que fechou
-      }
+    if (!this.eRef.nativeElement.contains(event.target) && this.mostrarBusca) {
+      this.mostrarBusca = false;
+      this.fecharBusca.emit();
     }
   }
 }
