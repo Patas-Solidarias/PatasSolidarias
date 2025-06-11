@@ -25,7 +25,7 @@
   </div>
 
   <!-- Menu -->
-  <nav class="mb-auto flex flex-col gap-[50px]">
+  <nav class="mb-auto flex flex-col gap-[30px]">
     <a routerLink="/home" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="menu-ativo"
       [ngClass]="{ 'menu-ativo': ativo === 'home' }" (click)="setAtivo('home'); closeSidebarOnNavigate()" class="icon">
       <i class="fa fa-home text-[25px]"></i>
@@ -44,9 +44,9 @@
       ></app-sidebar-search>
 
       <!-- adicionar -->
-    <button routerLinkActive="menu-ativo" [ngClass]="{ 'menu-ativo': ativo === 'add' }"
+    <button  routerLink="/add" routerLinkActive="menu-ativo" [ngClass]="{ 'menu-ativo': ativo === 'add' }"
       (click)="setAtivo('add'); closeSidebarOnNavigate()" class="icon">
-      <i class="fa fa-plus-square text-[25px]"></i>
+      <i class="fa fa-plus-square text-[30px]"></i>
     </button>
   </nav>
 

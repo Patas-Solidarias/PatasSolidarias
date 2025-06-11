@@ -1,1 +1,60 @@
-<p>sidebar-add works!</p>
+<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Botão de fechar -->
+
+
+        <!-- Upload de imagem -->
+        <div class="bg-gray-200 flex flex-col justify-center items-center rounded-lg h-full">
+            <p class="mb-4 text-center text-gray-700">Selecione as fotos aqui</p>
+            <button class="bg-green-900 text-white px-6 py-2 rounded hover:bg-green-800 transition">
+                Selecionar upload
+            </button>
+        </div>
+
+        <!-- Formulário -->
+        <div class="space-y-4">
+
+            <div class="flex justify-between items-start">
+                <h2 class="text-xl font-semibold text-green-800">Criar novo post</h2>
+                <a href="/" class="text-gray-500 hover:text-red-600 text-2xl font-bold leading-none">&times;</a>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Título</label>
+                <input type="text"
+                    class="mt-1 w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-700" />
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Descrição</label>
+                <textarea
+                    class="mt-1 w-full h-24 border border-gray-300 rounded px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-green-700"></textarea>
+            </div>
+
+            <div class="flex gap-2">
+                <div class="w-1/2">
+                    <label class="block text-sm font-medium text-gray-700">Início</label>
+                    <input type="date"
+                        class="mt-1 w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-700" />
+                </div>
+                <div class="w-1/2">
+                    <label class="block text-sm font-medium text-gray-700">Fim</label>
+                    <input type="date"
+                        class="mt-1 w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-700" />
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Objetivo</label>
+                <input type="text"
+                    class="mt-1 w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-700" />
+            </div>
+
+            <div class="pt-2">
+                <button class="w-full bg-green-200 text-white py-2 rounded cursor-not-allowed" disabled>
+                    Cadastrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
