@@ -13,8 +13,16 @@ import { SidebarSearchComponent } from '../../components/sidebar-search/sidebar-
 })
 export class SidebarComponent {
   ativo: string = 'home'; // padrão
+  sidebarAberta = false;
 
   setAtivo(nome: string) {
     this.ativo = nome;
+  }
+
+  /** Fecha a barra depois que o usuário navega (opcional, só para mobile) */
+  closeSidebarOnNavigate() {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      this.sidebarAberta = false;
+    }
   }
 }
