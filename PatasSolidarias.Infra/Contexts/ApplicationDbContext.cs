@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PatasSolidarias.Domain.Entities;
+using PatasSolidarias.Domain.Entities.Doacoes;
 
 namespace PatasSolidaras.Infra.Contexts;
 
@@ -13,6 +14,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
         AddUsuarioModelConfiguration(builder);
         AddUsuarioTipoConfiguration(builder);
+        AddDoacaoModelConfiguration(builder);
     }
 
     private void AddUsuarioTipoConfiguration(ModelBuilder builder)
@@ -43,11 +45,27 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             p.HasOne(pS => pS.UsuarioTipo)
                 .WithMany()
                 .HasForeignKey(pS => pS.UsuarioTipoId)
-                .OnDelete(DeleteBehavior.NoAction)
-            ;
+                .OnDelete(DeleteBehavior.NoAction);
+
+            p.HasMany(pS => pS.Doacoes)
+                .WithOne()
+                .HasForeignKey(dS => dS.IdDoador);
+        });
+    }
+
+    private static void AddDoacaoModelConfiguration(ModelBuilder builder)
+    {
+        builder.Entity<Doacao>(d =>
+        {
+            d.ToTable("Doação");
+            d.HasKey(d => d.Id);
+            d.Property(d => d.Id).ValueGeneratedOnAdd();
+            d.Property(pS => pS.Valor).IsRequired();
+            d.Property(pS => pS.MetodoPagamento).IsRequired();
         });
     }
 
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<UsuarioTipo> UsuarioTipos { get; set; }
+    public DbSet<Doacao> Doacoes { get; private set; } = null!;
 }

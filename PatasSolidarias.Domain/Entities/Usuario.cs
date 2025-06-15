@@ -1,4 +1,6 @@
-﻿namespace PatasSolidarias.Domain.Entities;
+﻿using PatasSolidarias.Domain.Entities.Doacoes;
+
+namespace PatasSolidarias.Domain.Entities;
 
 public class Usuario
 {
@@ -11,4 +13,5 @@ public class Usuario
     public required string Descricao { get; set; }
 
     public virtual UsuarioTipo? UsuarioTipo { get; set; }
+    public ICollection<Doacao> Doacoes { get; private set; } = [];
 }
