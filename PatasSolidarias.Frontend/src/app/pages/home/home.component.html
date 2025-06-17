@@ -1,5 +1,8 @@
-<!-- Publicações -->
-<app-publicacoes
-[publi]="publicacoes" 
-[quantidadeInicial]="3">
-</app-publicacoes>
+<div class="flex gap-5 w-full">
+    <!-- Publicações -->
+    <app-publicacoes class="flex-1" [publi]="publicacoes" [quantidadeInicial]="3">
+    </app-publicacoes>
+
+    <!-- barra lateral -->
+    <app-recentsbar></app-recentsbar>
+</div>

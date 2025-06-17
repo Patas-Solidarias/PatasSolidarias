@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { PublicacoesComponent } from '../../components/publicacoes/publicacoes.component';
+import { RecentsbarComponent } from '../../components/recentsbar/recentsbar.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, PublicacoesComponent],
+  imports: [CommonModule, PublicacoesComponent, RecentsbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -59,4 +60,6 @@ export class HomeComponent {
       seguindo: true
     }
   ];
+
+ 
 }

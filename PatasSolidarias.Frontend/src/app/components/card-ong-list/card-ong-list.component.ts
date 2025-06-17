@@ -11,6 +11,8 @@ import { CardOngComponent } from '../card-ong/card-ong.component';
 export class CardOngListComponent {
   @Input() ongs: any[] = [];
 
+  @Input() modoLista: boolean = false;
+
   quantidadePadrao = 4;
   quantidadeVisivel = this.quantidadePadrao;
 
