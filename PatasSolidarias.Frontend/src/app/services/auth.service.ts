@@ -1,23 +1,24 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { lastValueFrom, Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 
-import { backendApi as backendOpenApi } from '../../api/openApi';
 import { LoginRequest, LoginResponse } from '../../api/login';
+import { Usuario } from '../../api/usuario';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private _apiUrl = 'http://localhost:5000/api/Auth/login';
+  private _apiUrl = 'api/Auth/';
 
   private http = inject(HttpClient);
   constructor() { }
 
-  async login(email: string, password: string): Promise<LoginResponse> {
-    const body: LoginRequest = { email, password };
+  async login(email: string, senha: string): Promise<LoginResponse> {
+    const body: LoginRequest = { email, senha };
 
-    const request = this.http.post<LoginResponse>(this._apiUrl, body);
+    const uri = this._apiUrl + 'login';
+    const request = this.http.post<LoginResponse>(uri, body);
     const response = await lastValueFrom(request);
 
     if (response && response.token) {
@@ -29,6 +30,21 @@ export class AuthService {
     return response;
   }
 
+  async getUser(): Promise<Usuario> {
+    const uri = this._apiUrl + 'usuario';
+    const request = this.http.get<Usuario>(uri);
+    const retorno = await lastValueFrom(request);
+
+    return retorno;
+  }
+
+  async register(usuario: Usuario): Promise<Usuario> {
+    const uri = this._apiUrl + 'register';
+    const request = this.http.post<Usuario>(uri, usuario);
+    var retorno = await lastValueFrom(request);
+    return retorno;
+  }
+
   saveToken(token: string): void {
     localStorage.setItem('authToken', token);
   }
@@ -38,7 +54,8 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.getToken();
+    const retorno = this.getToken();
+    return !!retorno;
   }
 
   logout(): void {

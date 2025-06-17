@@ -1,38 +1,11 @@
 <div class="login-box">
   <h2 class="login-title">Login</h2>
 
- <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6">
-    <div class="grid grid-cols-1 gap-4">
-      <div class="flex flex-col md:col-span-2">
-      @for (item of fields; track $index) {
-      <label [attr.for]="item.key" class="mb-1 font-medium"
-        >{{ item.label }}
-      </label>
-      <div class="flex flex-col">
-        @switch (item.controlType) { @case ('input') {
-        <input
-          pInputText
-          [formControlName]="item.key"
-          [id]="item.key"
-          [type]="item.type"
-          class="p-inputtext p-component rounded-md focus:ring-2 focus:ring-blue-500"
-        />
-        } @case ('dropdown') {
-          <p-dropdown
-            [formControlName]="item.key"
-            [id]="item.key"
-            [options]="item.options"
-            optionLabel="key"
-            optionValue="value"
-            class="w-full"
-          ></p-dropdown>
-        } }
-      </div>
-      }
-      </div>
-    </div>
- </form>
+  <app-form
+    [fields]="fields"
+  >
 
+  </app-form>
   <button (click)="onSubmit()" class="btn">Entrar</button>
   <button class="btn secondary" (click)="navegarPara('cadastro-ong')">Cadastro ONG</button>
   <button class="btn secondary" (click)="navegarPara('cadastro-pessoa')">Cadastro Pessoa</button>

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.JsonWebTokens;
 using PatasSolidarias.Domain.Entities;
 using PatasSolidarias.Domain.Interfaces.Services;
 
@@ -8,6 +7,7 @@ namespace PatasSolidarias.Backend.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class UsuarioController: ControllerBase
 {
     private readonly IUsuarioService _usuarioService;
@@ -22,9 +22,6 @@ public class UsuarioController: ControllerBase
     {
         var retorno = _usuarioService.GetAll();
 
-        var email = User.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
-
-        var xTeste = retorno.ToList();
         return Task.FromResult<IActionResult>(Ok(retorno));
     }
     
@@ -34,26 +31,70 @@ public class UsuarioController: ControllerBase
         var retorno = await _usuarioService.GetByIdAsync(id);
         return Ok(retorno);
     }
-    
+
     [HttpPost]
-    [AllowAnonymous]
     public async Task<IActionResult> Add([FromBody] Usuario usuario)
     {
-        var retorno = await _usuarioService.AddAsync(usuario);
-        return Ok(retorno);
+        try
+        {
+            var retorno = await _usuarioService.AddAsync(usuario);
+            return Ok(retorno);
+        }
+        catch (DomainException domainException)
+        {
+            return BadRequest(new
+            {
+                Error = domainException.Message,
+                domainException.Field
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Error = "Um erro inesperado aconteceu.", Details = ex.Message });
+        }
     }
     
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] Usuario usuario)
     {
-        var retorno = await _usuarioService.UpdateAsync(usuario);
-        return Ok(retorno);
+        try
+        {
+            var retorno = await _usuarioService.UpdateAsync(usuario);
+            return Ok(retorno);
+        }
+        catch (DomainException domainException)
+        {
+            return BadRequest(new
+            {
+                Error = domainException.Message,
+                domainException.Field
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Error = "Um erro inesperado aconteceu.", Details = ex.Message });
+        }
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Remove(int id)
     {
-        var retorno = await _usuarioService.RemoveAsync(id);
-        return Ok(retorno);
+        try
+        {
+            var retorno = await _usuarioService.RemoveAsync(id);
+            return Ok(retorno);
+        }
+        catch (DomainException domainException)
+        {
+            return BadRequest(new
+            {
+                Error = domainException.Message,
+                domainException.Field
+            });
+        }
+        catch (Exception exception)
+        {
+            return StatusCode(500, new { Error = "Um erro inesperado aconteceu.", Details = exception.Message });
+        }
     }
 }

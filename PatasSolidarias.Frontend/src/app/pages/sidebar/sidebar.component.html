@@ -38,9 +38,9 @@
     </a>
 
     <!-- Busca -->
-    <app-sidebar-search [ativo]="ativo === 'search'" 
-      (ativarBusca)="setAtivo('search')" 
-      (fecharBusca)="setAtivo('')" 
+    <app-sidebar-search [ativo]="ativo === 'search'"
+      (ativarBusca)="setAtivo('search')"
+      (fecharBusca)="setAtivo('')"
       ></app-sidebar-search>
 
       <!-- adicionar -->
@@ -55,6 +55,6 @@
       class="mb-1 flex h-[50px] w-[50px] items-center justify-center rounded-full border-2 border-[#d6eee7] font-mono text-[#0e6958]">
       <i class="fa fa-user"></i>
     </a>
-    <span class="w-[90px] text-center font-mono text-[2ch]">Fazer login</span>
+    <span class="w-[90px] text-center font-mono text-[2ch]">{{usuarioAtivo}}</span>
   </div>
 </aside>

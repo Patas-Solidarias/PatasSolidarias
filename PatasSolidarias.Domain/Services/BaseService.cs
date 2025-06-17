@@ -13,31 +13,31 @@ public class BaseService<TEntity>: IBaseService<TEntity> where TEntity : class
         _repository = repository;
     }
 
-    public async Task<TEntity> AddAsync(TEntity entity)
+    public virtual async Task<TEntity> AddAsync(TEntity entity)
     {
         var retorno = await _repository.AddAsync(entity);
         return retorno;
     }
 
-    public async Task<TEntity> UpdateAsync(TEntity entity)
+    public virtual async Task<TEntity> UpdateAsync(TEntity entity)
     {
         var retorno = await _repository.UpdateAsync(entity);
         return retorno;
     }
 
-    public async Task<TEntity> RemoveAsync(int entityId)
+    public virtual async Task<TEntity> RemoveAsync(int entityId)
     {
         var retorno = await _repository.RemoveAsync(entityId);
         return retorno;
     }
 
-    public async Task<TEntity?> GetByIdAsync(int id)
+    public virtual async Task<TEntity?> GetByIdAsync(int id)
     {
         var retorno = await _repository.GetByIdAsync(id);
         return retorno;
     }
 
-    public IQueryable<TEntity> GetAll()
+    public virtual IQueryable<TEntity> GetAll()
     {
         var xReturn = _repository.GetAll();
         return xReturn;
