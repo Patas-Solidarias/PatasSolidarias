@@ -15,13 +15,13 @@
 }
 
 .container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background-image: url('../../../assets/fundo.png');
+  background-image: url("../../../assets/fundo.png");
   background-repeat: repeat;
   background-size: cover;
   z-index: 0;
@@ -34,7 +34,6 @@
 
 .left,
 .right {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,12 +41,13 @@
 }
 
 .left {
-  background-color: transparent;
+  flex: 0.4; // Adicionado para controlar a proporção
   padding: 2rem;
   background-color: #ffffff78 !important;
 }
 
 .right {
+  flex: 0.6; // Adicionado para controlar a proporção e aumentar a largura
   background-color: rgba(0, 0, 0, 0.541);
   padding: 2rem;
 }
@@ -64,15 +64,14 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-div#title{
-  line-height: 60px
+div#title {
+  line-height: 60px;
 }
 
 .subtitle {
   color: #106a5a;
-  font-size: 64px;
+  font-size: 45px;
   margin: 0;
   font-weight: 400;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-

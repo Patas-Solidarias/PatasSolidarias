@@ -10,8 +10,8 @@ import { firstValueFrom } from 'rxjs';
 
 import { usuarioTipos } from '../../../api/e-usuario-tipo';
 import { Usuario, usuarioColumns, usuarioForm } from '../../../api/usuario';
+import { Field } from '../../components/form/form.types';
 import { UsuarioService } from './pessoa-crud.service';
-import { Field } from '../../../utils/field';
 
 @Component({
   imports: [
@@ -47,48 +47,40 @@ export class PessoaCrudComponent {
 
   configuraCampos() {
     this.fields = [
-      new Field<string>({
-        key: 'nome',
+      {
+        name: 'Nome',
         label: 'Nome',
         required: true,
-        order: 1,
-        controlType: 'input',
-        type: 'text',
-      }),
-      new Field<string>({
-        key: 'email',
+        controlType: 'text',
+      },
+      {
+        name: 'email',
         label: 'Email',
         required: true,
-        order: 2,
-        controlType: 'input',
-        type: 'email',
-      }),
-      new Field<Usuario>({
-        key: 'senha',
+        controlType: 'text',
+      },
+      {
+        name: 'senha',
         label: 'Senha',
         required: true,
-        order: 3,
-        controlType: 'input',
-        type: 'password',
-      }),
-      new Field<number>({
-        key: 'usuarioTipoId',
+        controlType: 'text',
+      },
+      {
+        name: 'usuarioTipoId',
         label: 'Tipo de Usuário',
         required: true,
-        order: 4,
-        controlType: 'dropdown',
+        controlType: 'select',
         options: this.usuarioTipos.map((tipo) => ({
-          key: tipo.label.toString(),
-          value: tipo.value,
+          key: tipo.value,
+          description: tipo.label,
         })),
-      }),
-      new Field<string>({
-        key: 'descricao',
+      },
+      {
+        name: 'descricao',
         label: 'Descrição',
-        required: false,
-        order: 5,
-        controlType: 'input',
-      }),
+        required: true,
+        controlType: 'text',
+      },
     ];
   }
 

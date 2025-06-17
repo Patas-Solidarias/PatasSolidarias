@@ -1,6 +1,6 @@
 export class LoginRequest {
   email: string | undefined;
-  password: string | undefined;
+  senha: string | undefined;
 }
 
 export class LoginResponse {

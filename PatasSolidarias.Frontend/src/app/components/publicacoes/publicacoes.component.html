@@ -1,0 +1,71 @@
+<div class="flex flex-col gap-6">
+  <div 
+    *ngFor="let p of publi.slice(0, quantidadeVisivel)" 
+    class="rounded-xl overflow-hidden"
+  >
+    <!-- Aqui vai o card da postagem (igual fizemos antes) -->
+    <div class="flex items-center justify-between p-4">
+      <div class="flex items-center gap-3">
+        <img 
+          [src]="p.fotoPerfil" 
+          alt="Foto" 
+          class="w-10 h-10 rounded-full border-2 border-green-400">
+        <div class="flex flex-col">
+          <span class="font-medium text-black">{{ p.nome }}</span>
+          <span class="text-xs text-gray-500">{{ p.data }}</span>
+        </div>
+      </div>
+      <button 
+        class="px-4 py-1 bg-green-200 text-green-800 rounded-full hover:bg-green-300 transition">
+        {{ p.seguindo ? 'Seguindo' : '+ Seguir' }}
+      </button>
+    </div>
+
+    <div class="relative">
+      <img 
+        [src]="p.imagemPostagem" 
+        alt="Imagem da postagem" 
+        class="w-full object-cover">
+
+      <button 
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+               bg-green-200 text-green-800 px-5 py-2 rounded-full hover:bg-green-300 transition">
+        Realizar doação
+      </button>
+    </div>
+
+    <div class="p-4">
+      <p class="text-gray-700 text-sm">
+        {{ p.descricao }}
+      </p>
+    </div>
+
+    <div class="flex items-center justify-between px-4 pb-4">
+      <div class="flex gap-4">
+        <button class="flex items-center gap-1 text-gray-600 hover:text-green-700">
+          ❤️ <span class="text-sm">Curtir</span>
+        </button>
+        <button class="flex items-center gap-1 text-gray-600 hover:text-green-700">
+          💬 <span class="text-sm">Comentar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botões Mostrar Mais/Menos -->
+  <div class="flex justify-center">
+    <button 
+      *ngIf="quantidadeVisivel < publi.length"
+      (click)="mostrarMais()"
+      class="text-green-800 hover:underline">
+      Mostrar mais
+    </button>
+
+    <button 
+      *ngIf="quantidadeVisivel >= publi.length && publi.length > quantidadeInicial"
+      (click)="mostrarMenos()"
+      class="text-red-700 hover:underline">
+      Mostrar menos
+    </button>
+  </div>
+</div>

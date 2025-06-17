@@ -34,17 +34,28 @@ export const httpErrorInterceptor: HttpInterceptorFn = (request: HttpRequest<any
       }
       if (error.error instanceof ErrorEvent) {
         message = `Erro: ${error.error.message}`;
+      } else if (error.error?.errors && typeof error.error.errors === 'object') {
+        const fieldErrors = Object.values(error.error.errors)
+          .flatMap((errArray) => errArray as string[])
+          .join('\n ');
+        if (fieldErrors) {
+          message = fieldErrors;
+        }
       } else if (error.error?.message) {
         message = error.error.message;
       } else if (typeof error.error === 'string') {
         message = error.error;
+      } else if ((typeof error.error.error) === 'string') {
+        message = error.error.error;
       } else if (error.message) {
         message = error.message;
       }
 
-      messageService.add({ severity: 'error', summary: 'Erro', detail: message });
+
+      messageService.add({ severity: 'error', summary: 'Erro', detail: message, life: 5000 });
       return throwError(() => error);
     })
   );
+
   return newLocal;
 };

@@ -1,11 +1,10 @@
-
 .login-box {
   background: white;
   padding: 30px;
   border-radius: 10px;
-  min-width: 300px;
+  min-width: 400px;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   text-align: center;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
@@ -35,7 +34,7 @@ input {
 .btn {
   width: 100%;
   padding: 10px;
-  background-color: #87BFA8;
+  background-color: #87bfa8;
   border: none;
   border-radius: 5px;
   margin-top: 10px;
@@ -48,16 +47,15 @@ input {
   }
 
   &.secondary {
-    background-color: #C2DED3;
+    background-color: #c2ded3;
 
     &:hover {
-      background-color: #87BFA8;
+      background-color: #87bfa8;
     }
   }
 }
 
-
-div.ng-star-inserted{
+div.ng-star-inserted {
   color: red;
-  text-align: left
+  text-align: left;
 }

@@ -1,5 +1,9 @@
-<p-toast></p-toast>
-<app-sidebar></app-sidebar>
-<div class="main-content">
+<!-- Sidebar fixa -->
+<app-sidebar class="z-50"></app-sidebar>
+
+<div class="flex h-screen w-full overflow-hidden pl-5">
+  <!-- Conteúdo que preenche o resto -->
+  <main class="overflow-auto w-full">
     <router-outlet></router-outlet>
+  </main>
 </div>

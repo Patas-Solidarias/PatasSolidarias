@@ -1,1 +1,38 @@
-<app-perfil-empresa *ngIf="logado"></app-perfil-empresa>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+<div class="flex flex-col min-h-screen w-full bg-green-50">
+    <!-- Header -->
+    <div class="relative h-52 w-full bg-white flex items-center justify-center">
+        <img src="assets/fundo.png" alt="fundo" class="absolute inset-0 w-full h-full object-cover opacity-30" />
+        <div class="z-10 flex flex-col items-center">
+            <img src="assets/usu.png" class="w-24 h-24 rounded-full border-4 border-green-600" />
+        </div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="flex-1 p-10">
+        <!-- Avaliação -->
+        <div class="flex items-center space-x-2">
+            <div class="flex text-yellow-500">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-line"></i>
+                <i class="ri-star-line"></i>
+            </div>
+            <p>10 avaliações</p>
+        </div>
+
+        <!-- Dados -->
+        <div class="flex items-center space-x-2">
+            <p class="mt-4 text-lg font-semibold">Nome do usuário</p>
+            <button class="text-sm bg-green-200 text-green-900 px-2 py-1 rounded">Editar Perfil</button>
+        </div>
+        <p>E-mail</p>
+
+        <app-perfil *ngIf="tipoUsuario === 'usuario' && logado"></app-perfil>
+        <app-perfil-ong *ngIf="tipoUsuario === 'ong' && logado"></app-perfil-ong>
+        <app-perfil-empresa *ngIf="tipoUsuario === 'empresa' && logado"></app-perfil-empresa>
+
+    </div>
+</div>

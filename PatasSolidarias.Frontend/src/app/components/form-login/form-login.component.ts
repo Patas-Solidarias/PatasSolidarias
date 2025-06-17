@@ -1,5 +1,5 @@
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, inject, OnInit, Output, ViewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -7,12 +7,15 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 
-import { Field } from '../../../utils/field';
-import { Rotas } from '../../app.routes';
-import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../../api/login';
+import { temValor } from '../../../utils/tem-valor';
+import { Rotas } from '../../app.routes';
+import { FormComponent } from "../form/form.component";
+import { Field } from '../form/form.types';
+import { AuthService } from '../../services/auth.service';
+import { MessageService } from 'primeng/api';
 
-type telasLogin = 'login' | 'cadastro-ong' | 'cadastro-empresa' | 'cadastro-pessoa';
+type TelasLogin = 'login' | 'cadastro-ong' | 'cadastro-empresa' | 'cadastro-pessoa';
 @Component({
   selector: 'app-form-login',
   styleUrl: './form-login.component.scss',
@@ -24,67 +27,68 @@ type telasLogin = 'login' | 'cadastro-ong' | 'cadastro-empresa' | 'cadastro-pess
     DialogModule,
     InputTextModule,
     DropdownModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormComponent
   ]
 })
 export class FormLoginComponent implements OnInit {
   router = inject(Router);
-  @Output() navegar = new EventEmitter<telasLogin>()
+  authService = inject(AuthService);
+  messageService = inject(MessageService);
 
-  form: FormGroup = new FormGroup<any>({
-    email: new FormControl(''),
-    senha: new FormControl(''),
-  });
-  fields: Field<unknown>[] = [];
+  @Output() navegar = new EventEmitter<TelasLogin>();
 
+  fields: Field<LoginRequest>[] = [];
   rotas = Rotas;
 
+  @ViewChild(FormComponent) formComponent!: FormComponent<LoginRequest>;
+
   constructor(
-    private authService: AuthService,
   ) {
     this.configuraCampos();
   }
 
   private configuraCampos() {
     this.fields = [
-      new Field<string>({
-        key: 'email',
+      {
+        name: 'email',
         label: 'Email',
         required: true,
-        order: 2,
-        controlType: 'input',
-        type: 'email',
-      }),
-      new Field<string>({
-        key: 'senha',
+        controlType: 'text',
+      },
+      {
+        name: 'senha',
         label: 'Senha',
         required: true,
-        order: 3,
-        controlType: 'input',
-        type: 'password',
-      }),
+        controlType: 'text',
+        password: true,
+      },
     ];
   }
 
   ngOnInit(): void { }
 
-  navegarPara(rota: telasLogin) {
+  navegarPara(rota: TelasLogin) {
     this.navegar.emit(rota);
   }
 
   async onSubmit(): Promise<void> {
-    if (!this.form.valid) {
+    const loginRequest = this.formComponent.obterValorFormulario();
+
+    if (!loginRequest) {
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Formulário inválido.' });
       return;
     }
 
-    const { email, senha } = this.form.value;
+    const { email, senha } = loginRequest;
+    if (!temValor(email) || !temValor(senha)) {
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Email e senha são obrigatórios.' });
+      return;
+    }
+
     const retorno = await this.authService.login(email, senha);
     if (this.authService.isAuthenticated()) {
       this.router.navigateByUrl(Rotas.Home);
     }
-  }
-
-  onCancel(): void {
-    this.form.reset();
   }
 }

@@ -1,5 +1,5 @@
 <!-- Mini menu fixo no topo (apenas mobile) -->
-<div class="md:hidden fixed top-0 left-0 z-50 flex h-14 w-full items-center justify-between bg-white px-4 shadow">
+<div class="md:hidden fixed top-0 left-0 z-50 flex h-full w-full items-center justify-between bg-white px-4 shadow">
   <button (click)="sidebarAberta = !sidebarAberta">
     <i class="fa fa-bars text-2xl text-[#0e6958]"></i>
   </button>
@@ -21,7 +21,7 @@
   <!-- Título -->
   <div class="mb-10 text-center font-mono leading-[25px] text-[#007040]">
     <h2 class="text-[4ch]">PATAS</h2>
-    <p class="text-[2ch]">SOLIDARIAS</p>
+    <p class="text-[2ch]">SOLIDÁRIAS</p>
   </div>
 
   <!-- Menu -->
@@ -38,9 +38,9 @@
     </a>
 
     <!-- Busca -->
-    <app-sidebar-search [ativo]="ativo === 'search'" 
-      (ativarBusca)="setAtivo('search')" 
-      (fecharBusca)="setAtivo('')" 
+    <app-sidebar-search [ativo]="ativo === 'search'"
+      (ativarBusca)="setAtivo('search')"
+      (fecharBusca)="setAtivo('')"
       ></app-sidebar-search>
 
       <!-- adicionar -->
@@ -55,6 +55,6 @@
       class="mb-1 flex h-[50px] w-[50px] items-center justify-center rounded-full border-2 border-[#d6eee7] font-mono text-[#0e6958]">
       <i class="fa fa-user"></i>
     </a>
-    <span class="w-[90px] text-center font-mono text-[2ch]">Fazer login</span>
+    <span class="w-[90px] text-center font-mono text-[2ch]">{{usuarioAtivo}}</span>
   </div>
 </aside>
