@@ -1,0 +1,15 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+  <app-card-ong *ngFor="let ong of ongs.slice(0, quantidadeVisivel)" [nome]="ong.nome" [imagem]="ong.imagem">
+  </app-card-ong>
+</div>
+
+<div class="mt-4 flex justify-center">
+  <button *ngIf="quantidadeVisivel < ongs.length" (click)="mostrarMais()" class="text-green-800 hover:underline">
+    Mostrar mais
+  </button>
+
+  <button *ngIf="quantidadeVisivel >= ongs.length && ongs.length > quantidadePadrao" (click)="mostrarMenos()"
+    class="text-red-700 hover:underline">
+    Mostrar menos
+  </button>
+</div>

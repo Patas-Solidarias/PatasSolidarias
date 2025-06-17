@@ -1,0 +1,12 @@
+<div class="flex items-center gap-4 bg-white border border-gray-200 rounded-xl p-4 shadow-md">
+  <img [src]="imagem" alt="Foto" class="w-16 h-12 rounded-full border-2 border-green-400" />
+
+  <div class="flex flex-col">
+    <span class="font-medium text-black">{{ nome }}</span>
+  </div>
+
+  <button (click)="toggleSeguir()"
+    class="ml-auto px-4 py-1.5 bg-green-200 text-green-800 rounded-full hover:bg-green-300 transition">
+    {{ seguindo ? 'Seguindo' : '+ Seguir' }}
+  </button>
+</div>

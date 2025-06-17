@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { CupomListComponent } from '../cupom-list/cupom-list.component';
 import { CardOngListComponent } from '../card-ong-list/card-ong-list.component';
 
-
 @Component({
-  selector: 'app-perfil',
+  selector: 'app-perfil-empresa',
   imports: [CupomListComponent, CardOngListComponent],
-  templateUrl: './perfil.component.html',
-  styleUrl: './perfil.component.scss'
+  templateUrl: './perfil-empresa.component.html',
+  styleUrl: './perfil-empresa.component.scss'
 })
-export class PerfilComponent {
+export class PerfilEmpresaComponent {
   cupons = [
     { titulo: 'Desconto Ração', status: 'Ativo', validade: '12/12/2025' },
     { titulo: 'Banho Grátis', status: 'Usado', validade: '01/07/2025' },
@@ -21,7 +20,7 @@ export class PerfilComponent {
   ];
 
   ongs = [
-    { nome: 'ONG Patas Felizes', imagem: 'assets/fundo.png' },
+    { nome: 'ONG Patas Felizes', imagem: '' },
     { nome: 'ONG Amor Animal', imagem: '' },
     { nome: 'ONG Peludos Unidos', imagem: '' },
     { nome: 'ONG Vida Animal', imagem: '' },
@@ -29,5 +28,4 @@ export class PerfilComponent {
     { nome: 'ONG Amigos dos Pets', imagem: '' },
     { nome: 'ONG Cuidando Juntos', imagem: '' }
   ];
-
 }

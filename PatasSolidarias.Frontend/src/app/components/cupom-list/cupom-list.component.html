@@ -1,0 +1,45 @@
+<div class="flex flex-wrap gap-4">
+  <div 
+    *ngFor="let cupom of cupons | slice:0:quantidadeVisivel"
+    [ngClass]="{
+      'bg-green-700': cupom.status === 'Ativo',
+      'bg-gray-400': cupom.status === 'Usado',
+      'bg-red-600': cupom.status === 'Expirado'
+    }"
+    class="text-white p-4 rounded-xl w-full max-w-xs shadow-lg hover:scale-105 transition-transform"
+  >
+    <div class="flex justify-between items-center">
+      <span 
+        [ngClass]="{
+          'bg-green-800 text-white': cupom.status === 'Ativo',
+          'bg-gray-500 text-white': cupom.status === 'Usado',
+          'bg-red-700 text-white': cupom.status === 'Expirado'
+        }"
+        class="text-xs px-2 py-1 rounded-full">
+        {{ cupom.status }}
+      </span>
+    </div>
+
+    <h2 class="text-lg font-bold mt-2">{{ cupom.titulo }}</h2>
+    <p class="text-sm opacity-90">
+      Válido até: <span class="font-medium">{{ cupom.validade }}</span>
+    </p>
+  </div>
+</div>
+
+<!-- Botão Mostrar Mais / Menos -->
+<div class="mt-4 flex justify-center">
+  <button 
+    *ngIf="quantidadeVisivel < cupons.length"
+    (click)="mostrarMais()"
+    class="text-green-700 hover:underline hover:text-green-900 transition">
+    Mostrar mais
+  </button>
+
+  <button 
+    *ngIf="quantidadeVisivel >= cupons.length && cupons.length > 6"
+    (click)="mostrarMenos()"
+    class="text-red-700 hover:underline hover:text-red-900 transition">
+    Mostrar menos
+  </button>
+</div>
