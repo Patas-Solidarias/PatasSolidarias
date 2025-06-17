@@ -15,8 +15,8 @@ export class UsuarioComponent {
   logado: boolean = true; // Altere para 'true' para simular um usuário logado
 
   // Simule o tipo do usuario
-  // tipoUsuario: 'usuario' | 'ong' | 'empresa' = 'usuario'; 
-  tipoUsuario: 'usuario' | 'ong' | 'empresa' = 'empresa'; 
+  tipoUsuario: 'usuario' | 'ong' | 'empresa' = 'usuario'; 
+  // tipoUsuario: 'usuario' | 'ong' | 'empresa' = 'empresa'; 
   // tipoUsuario: 'usuario' | 'ong' | 'empresa' = 'ong'; 
 
 
