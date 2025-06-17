@@ -8,7 +8,7 @@ namespace PatasSolidarias.Backend.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CampanhaController: ControllersBase
+public class CampanhaController: ControllerBase
 {
     
 }
