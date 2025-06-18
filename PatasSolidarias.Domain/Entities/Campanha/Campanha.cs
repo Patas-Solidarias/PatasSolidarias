@@ -1,3 +1,5 @@
+using PatasSolidarias.Domain.Entities.Doacoes;
+
 namespace PatasSolidarias.Domain.Entities.Campanha;
 
 public sealed class Campanha{
@@ -10,6 +12,7 @@ public sealed class Campanha{
     public decimal MetaArrecadacao { get; private set; }
     public decimal Progresso { get; private set;}
     public int IdOng { get; private set;}
+    public ICollection<Doacao> Doacoes { get; private set; } = [];
 
 
     private Campanha() { }

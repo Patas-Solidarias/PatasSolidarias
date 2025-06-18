@@ -21,4 +21,9 @@ public class Usuario
 
     public virtual UsuarioTipo? UsuarioTipo { get; set; }
     public ICollection<Doacao> Doacoes { get; private set; } = [];
+
+    public void AddDonation(Doacao doacao)
+    {
+        Doacoes.Add(doacao);
+    }
 }
