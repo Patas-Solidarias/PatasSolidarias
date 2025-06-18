@@ -23,6 +23,8 @@ export class UsuarioComponent implements OnInit {
   EUsuarioTipo = EUsuarioTipo;
   tipoUsuario: EUsuarioTipo = EUsuarioTipo.Doador;
   usuarioAtivoNome?: string;
+  emailUsuarioAtivo?: string;
+  descricaoUsuarioAtivo?: string;
 
   async ngOnInit(): Promise<void> {
     const usuarioAtivo = await this.authService.obterUsuarioAtivo();
@@ -33,6 +35,9 @@ export class UsuarioComponent implements OnInit {
 
     this.usuarioAtivoNome = usuarioAtivo.nome;
     this.tipoUsuario = usuarioAtivo.usuarioTipoId!;
+    this.emailUsuarioAtivo = usuarioAtivo.email;
+    this.descricaoUsuarioAtivo = usuarioAtivo.descricao;
+
   }
 
   constructor(private router: Router) {
