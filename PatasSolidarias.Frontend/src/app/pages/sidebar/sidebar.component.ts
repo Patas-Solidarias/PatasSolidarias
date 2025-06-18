@@ -21,7 +21,7 @@ export class SidebarComponent implements OnInit {
   sidebarAberta = false;
 
   async ngOnInit(): Promise<void> {
-    const usuarioAtivo = await this.authService.getUser();
+    const usuarioAtivo = await this.authService.obterUsuarioAtivo();
     this.usuarioAtivo = usuarioAtivo?.nome || '';
   }
 

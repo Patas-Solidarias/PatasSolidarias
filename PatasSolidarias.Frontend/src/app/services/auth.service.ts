@@ -30,7 +30,7 @@ export class AuthService {
     return response;
   }
 
-  async getUser(): Promise<Usuario> {
+  async obterUsuarioAtivo(): Promise<Usuario> {
     const uri = this._apiUrl + 'usuario';
     const request = this.http.get<Usuario>(uri);
     const retorno = await lastValueFrom(request);

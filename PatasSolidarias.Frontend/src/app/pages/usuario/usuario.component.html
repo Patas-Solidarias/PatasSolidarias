@@ -25,14 +25,14 @@
 
         <!-- Dados -->
         <div class="flex items-center space-x-2">
-            <p class="mt-4 text-lg font-semibold">Nome do usuário</p>
+            <p class="mt-4 text-lg font-semibold">{{usuarioAtivoNome}}</p>
             <button class="text-sm bg-green-200 text-green-900 px-2 py-1 rounded">Editar Perfil</button>
         </div>
         <p>E-mail</p>
 
-        <app-perfil *ngIf="tipoUsuario === 'usuario' && logado"></app-perfil>
-        <app-perfil-ong *ngIf="tipoUsuario === 'ong' && logado"></app-perfil-ong>
-        <app-perfil-empresa *ngIf="tipoUsuario === 'empresa' && logado"></app-perfil-empresa>
+        <app-perfil *ngIf="tipoUsuario === EUsuarioTipo.Doador"></app-perfil>
+        <app-perfil-ong *ngIf="tipoUsuario === EUsuarioTipo.Ong"></app-perfil-ong>
+        <app-perfil-empresa *ngIf="tipoUsuario === EUsuarioTipo.EmpresaParceira"></app-perfil-empresa>
 
     </div>
 </div>
