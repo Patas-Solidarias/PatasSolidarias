@@ -27,25 +27,26 @@
   <!-- Menu -->
   <nav class="mb-auto flex flex-col gap-[30px]">
     <a routerLink="/home" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="menu-ativo"
-      [ngClass]="{ 'menu-ativo': ativo === 'home' }" (click)="setAtivo('home'); closeSidebarOnNavigate()" class="icon">
+      [ngClass]="{ 'menu-ativo': ativo === 'home' }" (click)="setAbaAtiva('home'); closeSidebarOnNavigate()" class="icon">
       <i class="fa fa-home text-[25px]"></i>
     </a>
 
-<!-- Video -->
-    <a routerLink="/video" routerLinkActive="menu-ativo" [ngClass]="{ 'menu-ativo': ativo === 'video' }"
-      (click)="setAtivo('video'); closeSidebarOnNavigate()" class="icon">
+    <!-- Video -->
+    <!-- <a routerLink="/video" routerLinkActive="menu-ativo" [ngClass]="{ 'menu-ativo': ativo === 'video' }"
+      (click)="setAbaAtiva('video'); closeSidebarOnNavigate()" class="icon">
       <i class="fa fa-video text-[25px]"></i>
-    </a>
+    </a> -->
 
     <!-- Busca -->
     <app-sidebar-search [ativo]="ativo === 'search'"
-      (ativarBusca)="setAtivo('search')"
-      (fecharBusca)="setAtivo('')"
-      ></app-sidebar-search>
+      (ativarBusca)="setAbaAtiva('search')"
+      (fecharBusca)="setAbaAtiva('')"
+    ></app-sidebar-search>
 
-      <!-- adicionar -->
-    <button  routerLink="/add" routerLinkActive="menu-ativo" [ngClass]="{ 'menu-ativo': ativo === 'add' }"
-      (click)="setAtivo('add'); closeSidebarOnNavigate()" class="icon">
+    <!-- adicionar -->
+    @if (usuarioAtivo) {}
+    <button *ngIf="usuarioAtivo?.usuarioTipoId !== EUsuarioTipo.Doador" routerLink="/add" routerLinkAcFtive="menu-ativo" [ngClass]="{ 'menu-ativo': ativo === 'add' }"
+      (click)="setAbaAtiva('add'); closeSidebarOnNavigate()" class="icon">
       <i class="fa fa-plus-square text-[30px]"></i>
     </button>
   </nav>
@@ -53,8 +54,18 @@
   <div class="mb-5 flex flex-col items-center">
     <a routerLink="/usuario" (click)="closeSidebarOnNavigate()"
       class="mb-1 flex h-[50px] w-[50px] items-center justify-center rounded-full border-2 border-[#d6eee7] font-mono text-[#0e6958]">
-      <i class="fa fa-user"></i>
+      @switch (usuarioAtivo?.usuarioTipoId) {
+        @case (EUsuarioTipo.Doador) {
+          <i title="Usuário {{usuarioAtivo?.nome}}" class="fa fa-user"></i>
+        }
+        @case (EUsuarioTipo.EmpresaParceira) {
+          <i title="Empresa parceira {{usuarioAtivo?.nome}}" class="fa fa-industry"></i>
+        }
+        @case (EUsuarioTipo.Ong) {
+          <i title="ONG {{usuarioAtivo?.nome}}" class="fa fa-paw"></i>
+        }
+      }
     </a>
-    <span class="w-[90px] text-center font-mono text-[2ch]">{{usuarioAtivo}}</span>
+    <span class="w-[90px] text-center font-mono text-[2ch]">{{usuarioAtivo?.nome}}</span>
   </div>
 </aside>

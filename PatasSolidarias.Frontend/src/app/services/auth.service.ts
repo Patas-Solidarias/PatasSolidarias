@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 
 import { LoginRequest, LoginResponse } from '../../api/login';
 import { Usuario } from '../../api/usuario';
+import { UsuarioResponse } from '../../api/usuario-response';
 
 @Injectable({
   providedIn: 'root',
@@ -30,9 +31,9 @@ export class AuthService {
     return response;
   }
 
-  async obterUsuarioAtivo(): Promise<Usuario> {
+  async obterUsuarioAtivo(): Promise<UsuarioResponse> {
     const uri = this._apiUrl + 'usuario';
-    const request = this.http.get<Usuario>(uri);
+    const request = this.http.get<UsuarioResponse>(uri);
     const retorno = await lastValueFrom(request);
 
     return retorno;

@@ -5,6 +5,8 @@ import { lastValueFrom } from 'rxjs';
 
 import { SidebarSearchComponent } from '../../components/sidebar-search/sidebar-search.component';
 import { AuthService } from '../../services/auth.service';
+import { Usuario } from '../../../api/usuario';
+import { EUsuarioTipo } from '../../../api/e-usuario-tipo';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,18 +16,18 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  EUsuarioTipo = EUsuarioTipo;
   authService = inject(AuthService);
-  usuarioAtivo = "";
+  usuarioAtivo?: Usuario;
 
   ativo = 'home';
   sidebarAberta = false;
 
   async ngOnInit(): Promise<void> {
-    const usuarioAtivo = await this.authService.obterUsuarioAtivo();
-    this.usuarioAtivo = usuarioAtivo?.nome || '';
+    this.usuarioAtivo = await this.authService.obterUsuarioAtivo();
   }
 
-  setAtivo(nome: string) {
+  setAbaAtiva(nome: string) {
     this.ativo = nome;
   }
 

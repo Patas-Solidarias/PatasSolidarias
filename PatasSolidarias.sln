@@ -8,9 +8,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatasSolidarias.Domain", "P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - PatasSolidarias.Presentation", "1 - PatasSolidarias.Presentation", "{98CB3EC3-8F2E-4509-B6B7-2BBAB9F2DA55}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - PatasSolidarias.Domain", "3 - PatasSolidarias.Domain", "{4185F1ED-455D-4672-9EE1-C7B7BB9B7CDC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - PatasSolidarias.Domain", "2 - PatasSolidarias.Domain", "{4185F1ED-455D-4672-9EE1-C7B7BB9B7CDC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - PatasSolidarias.Infra", "4 - PatasSolidarias.Infra", "{01E2C903-7141-47DA-A6CB-C832BD74D09F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - PatasSolidarias.Infra", "3 - PatasSolidarias.Infra", "{01E2C903-7141-47DA-A6CB-C832BD74D09F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatasSolidarias.Artefatos", "PatasSolidarias.Artefatos\PatasSolidarias.Artefatos.csproj", "{4601238B-AAAB-458B-B8C3-5C6C99FA103F}"
 EndProject

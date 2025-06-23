@@ -1,6 +1,6 @@
 namespace PatasSolidarias.Backend.Services
 {
-    public interface IUser
+    public interface IUserService
     {
         string? Email { get; }
     }

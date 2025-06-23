@@ -31,6 +31,7 @@ export const httpErrorInterceptor: HttpInterceptorFn = (request: HttpRequest<any
         message = 'Sessão expirada. Por favor, faça login novamente.';
         authService.logout();
         router.navigate([Rotas.Login]);
+        return throwError(() => error);
       }
       if (error.error instanceof ErrorEvent) {
         message = `Erro: ${error.error.message}`;
