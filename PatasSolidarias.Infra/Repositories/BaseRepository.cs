@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PatasSolidaras.Infra.Contexts;
+using PatasSolidarias.Domain.DomainErrors;
 using PatasSolidarias.Domain.Entities;
 using PatasSolidarias.Domain.Erros;
 using PatasSolidarias.Domain.Interfaces.Repositories;

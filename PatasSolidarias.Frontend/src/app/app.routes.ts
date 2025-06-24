@@ -8,7 +8,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PessoaCrudComponent } from './pages/pessoa-crud/pessoa-crud.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
-import { VideoComponent } from './pages/video/video.component';
 
 export const Rotas = {
   PessoaCrudComponent: 'pessoa-crud',
@@ -26,7 +25,6 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: Rotas.Home, component: HomeComponent },
-      { path: Rotas.Video, component: VideoComponent },
       { path: Rotas.Add, component: SidebarAddComponent },
       { path: Rotas.Usuario, component: UsuarioComponent },
       { path: Rotas.PessoaCrudComponent, component: PessoaCrudComponent },

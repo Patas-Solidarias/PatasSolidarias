@@ -1,4 +1,4 @@
-﻿namespace PatasSolidarias.Domain.Erros;
+﻿namespace PatasSolidarias.Domain.DomainErrors;
 
 public static class DomainErrors
 {

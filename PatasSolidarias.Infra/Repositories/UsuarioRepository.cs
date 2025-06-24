@@ -21,5 +21,5 @@ public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
         => await _context.Doacoes.Where(d => d.IdDoador == userId).ToListAsync();
 
     public async Task<Campanha?> GetCampanhaById(int campaignId)
-        => await _context.Campanhas.FirstOrDefaultAsync(c => c.ID == campaignId);
+        => await _context.Campanhas.FirstOrDefaultAsync(c => c.Id == campaignId);
 }

@@ -60,8 +60,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         builder.Entity<Doacao>(d =>
         {
             d.ToTable("Doação");
-            d.HasKey(d => d.Id);
-            d.Property(d => d.Id).ValueGeneratedOnAdd();
+            d.HasKey(pS => pS.Id);
+            d.Property(pS => pS.Id).ValueGeneratedOnAdd();
             d.Property(pS => pS.Valor).IsRequired();
             d.Property(pS => pS.MetodoPagamento).IsRequired();
         });
@@ -71,11 +71,32 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     {
         builder.Entity<Campanha>(c =>
         {
+            c.HasOne(pS => pS.OngUsuario)
+                .WithMany()
+                .HasForeignKey(p => p.OngUsuarioId);
+                
              c.HasMany(pS => pS.Doacoes)
                 .WithOne()
                 .HasForeignKey(dS => dS.IdCampanha);
         });
     }
+
+    private static void AddImagemEmCampanha(ModelBuilder builder)
+    {
+        builder.Entity<ImagemEmCampanha>(i =>
+        {
+            i.ToTable("ImagemEmCampanha");
+            i.HasKey(pS => pS.Id);
+            i.Property(pS => pS.Id).ValueGeneratedOnAdd();
+            i.Property(pS => pS.Imagem).IsRequired().HasMaxLength(500);
+            i.Property(pS => pS.CampanhaId).IsRequired();
+
+            i.HasOne(pS => pS.Campanha)
+                .WithMany(c => c.Imagens)
+                .HasForeignKey(pS => pS.CampanhaId);
+        });
+    }
+    
 
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<UsuarioTipo> UsuarioTipos { get; set; }

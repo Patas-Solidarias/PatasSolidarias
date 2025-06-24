@@ -10,6 +10,7 @@ public static class InfraExtensions
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddScoped<ICampanhaRepository, CampanhaRepository>();
         
         return services;
     }
