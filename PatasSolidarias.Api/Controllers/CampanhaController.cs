@@ -31,6 +31,13 @@ public class CampanhaController : ControllerBase
         var retorno = await _campanhaService.GetByIdAsync(id);
         return Ok(retorno);
     }
+    
+    [HttpGet("search/{value}")]
+     public async Task<IActionResult> Search(string value)
+     {
+         var retorno = await _campanhaService.SearchCampanhas(value);
+         return Ok(retorno);
+     }
 
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] Campanha campanha)

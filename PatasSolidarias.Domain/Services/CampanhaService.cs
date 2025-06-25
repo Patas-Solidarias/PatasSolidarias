@@ -27,4 +27,7 @@ public class CampanhaService: BaseService<Campanha>, ICampanhaService
         await _repository.UpdateAsync(campanha);
         return true;
     }
+
+    public async Task<IEnumerable<Campanha>> SearchCampanhas(string value)
+        => await _repository.SearchCampanhas(value.Trim());
 }
